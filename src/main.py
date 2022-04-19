@@ -14,7 +14,7 @@ while process:
     if exit_button.draw(1400, 770, '   exit', true_func) is True:
         process = False
         if counter_dict['litters/minute']:
-            with open('asserts/Texts/statictics.txt', 'a') as f:
+            with open('src/asserts/Texts/statictics.txt', 'a') as f:
                 f.write(str(counter_dict['litters/minute']) + ' ' +
                         str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
                         str(datetime.now())[:-7] + '\n')
@@ -24,7 +24,7 @@ while process:
         if event.type == pygame.QUIT:
             process = False  # Если мы нажали на кнопочку закрыть, то мы выходим из приложения
             if counter_dict['litters/minute']:
-                with open('asserts/Texts/statictics.txt', 'a') as f:
+                with open('src/asserts/Texts/statictics.txt', 'a') as f:
                     f.write(str(counter_dict['litters/minute']) + ' ' +
                             str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
                             str(datetime.now())[:-7] + '\n')
@@ -33,18 +33,19 @@ while process:
             if event.key == pygame.K_BACKSPACE:
                 input_txt = input_txt[:-1]
 
-            elif len_txt_string == len(input_txt) and (event.key == pygame.K_RETURN or event.key == pygame.K_SPACE):
+            elif len_txt_string == len(input_txt):
+                if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
 
-                count(len_txt_string, txt_string, counter_dict)
-                input_txt = ''
+                    count(len_txt_string, txt_string, counter_dict)
+                    input_txt = ''
 
-                if len(txt_list):
-                    txt_list.pop(0)
-                    txt_short_list = [txt_list[i] for i in range(5)] if len(txt_list) >= 5 else [i for i in txt_list]
-                    txt_string = txt_short_list[0]
-                else:
-                    txt_short_list = ['']
-                    txt_string = 'End!'
+                    if len(txt_list) > 1:
+                        txt_list.pop(0)
+                        txt_short_list = [txt_list[i] for i in range(5)] if len(txt_list) >= 5 else [i for i in txt_list]
+                        txt_string = txt_short_list[0]
+                    else:
+                        txt_short_list = ['']
+                        txt_string = 'End!'
 
             elif event.unicode and event.key != pygame.K_ESCAPE:
 
@@ -53,7 +54,7 @@ while process:
                     counter_dict['mistakes_counter'] += 1
                     counter_dict['mistakes_in_str'] += 1
                     mist_sound()
-
+                    #input_txt += tmp_unicode
                     key_dict[tmp_letter].mists = min(65, key_dict[tmp_letter].mists + 5)
                     if tmp_letter.isupper():
                         if key_dict[tmp_letter].shift == 'L':
@@ -83,7 +84,7 @@ while process:
     statistics_table(counter_dict)
 
     for i in range(100):
-        display.blit(pygame.image.load('asserts/Textures/x.png'), (16 * i, 240))
+        display.blit(pygame.image.load('src/asserts/Textures/x.png'), (16 * i, 240))
 
     for i in range(len(txt_short_list)):
         print_txt(txt_short_list[i], 50, 266 + 30 * i, main_font)
