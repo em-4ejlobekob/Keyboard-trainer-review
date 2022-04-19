@@ -1,5 +1,5 @@
 # em-4ejlobekob-Hi-Vlad-repo-4
-
+Клавиатурный тренажёр.
 
 Запуск проекта:
 
@@ -8,7 +8,7 @@ mkdir Review_1
 sudo apt update 
 sudo apt install python-pygame
 python -m pip install easygui
-git clone https://github.com/em-4ejlobekob/Hi-Vlad-repo.git -b dev
+git clone https://github.com/em-4ejlobekob/em-4ejlobekob-Hi-Vlad-repo-4.git
 cd Hi-Vlad-repo/src
 python3 main.py
 ```
