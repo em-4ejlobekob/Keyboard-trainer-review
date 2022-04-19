@@ -46,6 +46,8 @@ while process:
                     else:
                         txt_short_list = ['']
                         txt_string = 'End!'
+                else:
+                    mist_sound()
 
             elif event.unicode and event.key != pygame.K_ESCAPE:
 
