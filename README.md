@@ -4,12 +4,11 @@
 Запуск проекта:
 
 ```
-mkdir Review_1
 sudo apt update 
 pip install pygame
 python -m pip install easygui
 git clone https://github.com/em-4ejlobekob/em-4ejlobekob-Hi-Vlad-repo-4.git -b dev
-cd Review_1/Hi-Vlad-repo/src
+cd em-4ejlobekob-Hi-Vlad-repo-4/src
 python3 main.py
 ```
 

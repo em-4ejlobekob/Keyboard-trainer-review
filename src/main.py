@@ -14,7 +14,7 @@ while process:
     if exit_button.draw(1400, 770, '   exit', true_func) is True:
         process = False
         if counter_dict['litters/minute']:
-            with open('src/asserts/Texts/statictics.txt', 'a') as f:
+            with open('asserts/Texts/statictics.txt', 'a') as f:
                 f.write(str(counter_dict['litters/minute']) + ' ' +
                         str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
                         str(datetime.now())[:-7] + '\n')
@@ -24,7 +24,7 @@ while process:
         if event.type == pygame.QUIT:
             process = False  # Если мы нажали на кнопочку закрыть, то мы выходим из приложения
             if counter_dict['litters/minute']:
-                with open('src/asserts/Texts/statictics.txt', 'a') as f:
+                with open('asserts/Texts/statictics.txt', 'a') as f:
                     f.write(str(counter_dict['litters/minute']) + ' ' +
                             str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
                             str(datetime.now())[:-7] + '\n')
@@ -86,7 +86,7 @@ while process:
     statistics_table(counter_dict)
 
     for i in range(100):
-        display.blit(pygame.image.load('src/asserts/Textures/x.png'), (16 * i, 240))
+        display.blit(pygame.image.load('asserts/Textures/x.png'), (16 * i, 240))
 
     for i in range(len(txt_short_list)):
         print_txt(txt_short_list[i], 50, 266 + 30 * i, main_font)
