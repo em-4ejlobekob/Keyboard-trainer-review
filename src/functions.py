@@ -32,29 +32,29 @@ def add_txt(txt=None):
 
 
 def statistics_table(counter_dict,  x=1200, y=20):
-    print_txt('mistakes: ' + str(counter_dict['mistakes_counter']), x, y, 'asserts/Fonts/font_1.otf')  # ошибки
-    print_txt('letters/minute in str: ' + str(counter_dict['letters_in_str_speed']), x, y + 30, 'asserts/Fonts/font_1.otf')
-    print_txt('words/minute in str: ' + str(counter_dict['words_in_str_speed']), x, y + 60, 'asserts/Fonts/font_1.otf')
-    print_txt('litters/minute: ' + str(counter_dict['letters_counter']), x, y + 90, 'asserts/Fonts/font_1.otf')
-    print_txt('words/minute: ' + str(counter_dict['words_counter']), x, y + 120, 'asserts/Fonts/font_1.otf')
+    print_txt('mistakes: ' + str(counter_dict['mistakes_counter']), x, y, 'src/asserts/Fonts/font_1.otf')  # ошибки
+    print_txt('letters/minute in str: ' + str(counter_dict['letters_in_str_speed']), x, y + 30, 'src/asserts/Fonts/font_1.otf')
+    print_txt('words/minute in str: ' + str(counter_dict['words_in_str_speed']), x, y + 60, 'src/asserts/Fonts/font_1.otf')
+    print_txt('litters/minute: ' + str(counter_dict['letters_counter']), x, y + 90, 'src/asserts/Fonts/font_1.otf')
+    print_txt('words/minute: ' + str(counter_dict['words_counter']), x, y + 120, 'src/asserts/Fonts/font_1.otf')
 
     if counter_dict['letters_counter_str'] > 0:
         print_txt('% of fails in string: ' +
-                  str(int(100 * counter_dict['mistakes_in_str'] / counter_dict['letters_counter_str'])) +
-                  '%', x, y + 150, 'asserts/Fonts/font_1.otf')
+                  str(int(100 * counter_dict['mistakes_in_str'] / (counter_dict['letters_counter_str'] + counter_dict['mistakes_in_str']))) +
+                  '%', x, y + 150, 'src/asserts/Fonts/font_1.otf')
     else:
-        print_txt('% of fails in string: 0%', x, y + 150, 'asserts/Fonts/font_1.otf')
+        print_txt('% of fails in string: 0%', x, y + 150, 'src/asserts/Fonts/font_1.otf')
 
     if counter_dict['letters_counter'] > 0:
         print_txt('total % of fails: ' +
-                  str(int(100 * counter_dict['mistakes_counter'] / counter_dict['letters_counter'])) +
-                  '%', x, y + 180, 'asserts/Fonts/font_1.otf')
+                  str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + counter_dict['mistakes_counter']))) +
+                  '%', x, y + 180, 'src/asserts/Fonts/font_1.otf')
     else:
-        print_txt('total % of fails: 0%', x, y + 180, 'asserts/Fonts/font_1.otf')
+        print_txt('total % of fails: 0%', x, y + 180, 'src/asserts/Fonts/font_1.otf')
 
 
 def mist_sound():
-    pygame.mixer.Sound.play(pygame.mixer.Sound('asserts/Sounds/mist_click.mp3'))
+    pygame.mixer.Sound.play(pygame.mixer.Sound('src/asserts/Sounds/mist_click.mp3'))
 
 
 def change_font():
@@ -68,7 +68,7 @@ def true_func():
 def watch_stat():
     from Global import exit_button
 
-    with open('asserts/Texts/statictics.txt', 'r') as f:
+    with open('src/asserts/Texts/statictics.txt', 'r') as f:
         a = f.read().split('\n')
     while len(a) > 20:
         a.pop(0)
