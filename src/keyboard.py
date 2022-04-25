@@ -33,21 +33,21 @@ class Key:
         counter_y = 0
         if len(self.litters) == 3:
 
-            print_txt(self.litters[0], self.x + counter_x + 15, self.y + counter_y + 10, 'src/asserts/Fonts/font_1.otf')
-            print_txt(self.litters[1], self.x + counter_x + 45, self.y + counter_y + 10, 'src/asserts/Fonts/font_1.otf')
-            print_txt(self.litters[2], self.x + counter_x + 25, self.y + counter_y + 40, 'src/asserts/Fonts/font_1.otf')
+            print_txt(self.litters[0], self.x + counter_x + 15, self.y + counter_y + 10, 'asserts/Fonts/font_1.otf')
+            print_txt(self.litters[1], self.x + counter_x + 45, self.y + counter_y + 10, 'asserts/Fonts/font_1.otf')
+            print_txt(self.litters[2], self.x + counter_x + 25, self.y + counter_y + 40, 'asserts/Fonts/font_1.otf')
 
         elif len(self.litters) == 4:
 
-            print_txt(self.litters[0], self.x + counter_x + 20, self.y + counter_y + 10, 'src/asserts/Fonts/font_1.otf')
-            print_txt(self.litters[1], self.x + counter_x + 50, self.y + counter_y + 10, 'src/asserts/Fonts/font_1.otf')
-            print_txt(self.litters[2], self.x + counter_x + 20, self.y + counter_y + 40, 'src/asserts/Fonts/font_1.otf')
-            print_txt(self.litters[3], self.x + counter_x + 50, self.y + counter_y + 40, 'src/asserts/Fonts/font_1.otf')
+            print_txt(self.litters[0], self.x + counter_x + 20, self.y + counter_y + 10, 'asserts/Fonts/font_1.otf')
+            print_txt(self.litters[1], self.x + counter_x + 50, self.y + counter_y + 10, 'asserts/Fonts/font_1.otf')
+            print_txt(self.litters[2], self.x + counter_x + 20, self.y + counter_y + 40, 'asserts/Fonts/font_1.otf')
+            print_txt(self.litters[3], self.x + counter_x + 50, self.y + counter_y + 40, 'asserts/Fonts/font_1.otf')
 
         else:
 
             for i_ in self.litters:
-                print_txt(i_, self.x + counter_x + 20, self.y - counter_x + 35, 'src/asserts/Fonts/font_1.otf')
+                print_txt(i_, self.x + counter_x + 20, self.y - counter_x + 35, 'asserts/Fonts/font_1.otf')
                 counter_x += 25
 
 
