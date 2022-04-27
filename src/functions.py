@@ -1,4 +1,7 @@
-from Global import display, main_font, fonts, time, pygame, easygui
+from Global import pygame, display, main_font, fonts, max_str_len
+import time
+import easygui
+from datetime import datetime
 
 
 def print_txt(message, x, y, font_type=main_font, font_color=(0, 0, 0), font_size=26, condition=False, dspl=display):
@@ -12,45 +15,39 @@ def add_txt(txt=None):
 
     if txt is None:
         txt = easygui.fileopenbox()
-    if txt is None or len(txt) < 4:
+    if txt is None or len(txt) < 4 or txt[-4:len(txt)] != '.txt':
         return None
-    elif txt[-4:len(txt)] != '.txt':
-        return None
-    print(txt)
+
     with open(txt, 'r') as f:
-        a, s = list(), ''
-        for i in [i for i in ' '.join('-'.join(f.read().split('—')).split('\n')).split(' ') if i != '']:
-            if len(s) == 0:
-                s = i
-            elif len(s) + len(i) < 80:
-                s = ' '.join([s, i])
+        strings, string = list(), ''
+        file_strings = ' '.join('-'.join(f.read().split('—')).split('\n')).split(' ')
+        # Разбиваем текстовый файл по символам '—' (его нет на клавиатуре) и собираем в исходный файл с символом '-',
+        # который есть на клавиатуре. Затем разбиваем весь файл на отдельные строки
+        for word in [string for string in file_strings if string != '']:
+            if len(string) == 0:
+                string = word
+            elif len(string) + len(word) < max_str_len:
+                string = ' '.join([string, word])
             else:
-                a.append(s)
-                s = i
-        a.append(s)
-    return a
+                strings.append(string)
+                string = word
+        strings.append(string)
+    return strings
 
 
 def statistics_table(counter_dict,  x=1200, y=20):
-    print_txt('mistakes: ' + str(counter_dict['mistakes_counter']), x, y, 'asserts/Fonts/font_1.otf')  # ошибки
-    print_txt('letters/minute in str: ' + str(counter_dict['letters_in_str_speed']), x, y + 30, 'asserts/Fonts/font_1.otf')
-    print_txt('words/minute in str: ' + str(counter_dict['words_in_str_speed']), x, y + 60, 'asserts/Fonts/font_1.otf')
-    print_txt('litters/minute: ' + str(counter_dict['letters_counter']), x, y + 90, 'asserts/Fonts/font_1.otf')
-    print_txt('words/minute: ' + str(counter_dict['words_counter']), x, y + 120, 'asserts/Fonts/font_1.otf')
-
-    # if counter_dict['letters_counter_str'] > 0:
-    #    print_txt('% of fails in string: ' +
-    #              str(int(100 * counter_dict['mistakes_in_str'] / (counter_dict['letters_counter_str'] + counter_dict['mistakes_in_str']))) +
-    #              '%', x, y + 150, 'asserts/Fonts/font_1.otf')
-    # else:
-    #     print_txt('% of fails in string: 0%', x, y + 150, 'asserts/Fonts/font_1.otf')
+    print_txt('Ошибки: ' + str(counter_dict['mistakes_counter']), x, y)  # ошибки
+    print_txt('Символов в минуту в строке: ' + str(counter_dict['letters_in_str_speed']), x, y + 30)
+    print_txt('Слов в минуту в строке: ' + str(counter_dict['words_in_str_speed']), x, y + 60)
+    print_txt('Символов в минуту: ' + str(counter_dict['litters/minute']), x, y + 90)
+    print_txt('Слов в минуту: ' + str(counter_dict['words/minute']), x, y + 120)
 
     if counter_dict['letters_counter'] > 0:
-        print_txt('% of fails: ' +
-                  str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + counter_dict['mistakes_counter']))) +
-                  '%', x, y + 180, 'asserts/Fonts/font_1.otf')
+        mistakes = counter_dict['mistakes_counter']
+        typed = (counter_dict['letters_counter'] + counter_dict['mistakes_counter'])
+        print_txt('Ошибки: ' + str(int(100 * mistakes / typed)) + '%', x, y + 150)
     else:
-        print_txt('% of fails: 0%', x, y + 180, 'asserts/Fonts/font_1.otf')
+        print_txt('Ошибки: 0%', x, y + 150)
 
 
 def mist_sound():
@@ -61,14 +58,14 @@ def change_font():
     fonts.append(fonts.pop(0))
 
 
-def true_func():
+def press_register():
     return True
 
 
 def watch_stat():
     from Global import exit_button
 
-    with open('src/asserts/Texts/statictics.txt', 'r') as f:
+    with open('asserts/Texts/statictics.txt', 'r') as f:
         a = f.read().split('\n')
     while len(a) > 20:
         a.pop(0)
@@ -77,11 +74,11 @@ def watch_stat():
     while start:
         display.fill((255, 255, 255))
         x, y = 10, 10
-        print_txt('Символов в минута', x, y)
+        print_txt('Символов в минутy', x, y)
         print_txt('% ошибок', x + 500, y)
         print_txt(' гггг-мм-дд   чч-мм-сс', x + 1000, y)
 
-        if exit_button.draw(1400, 770, '   exit', true_func) is True:
+        if exit_button.draw(1400, 770, '   exit', press_register()) is True:
             start = False
         for i in a:
             if i:
@@ -107,3 +104,10 @@ def count(len_txt_string, txt_string, counter_dict: dict):
     counter_dict['words/minute'] = int(60 * counter_dict['words_counter'] / (time.time() - counter_dict['start_time']))
     counter_dict['litters/minute'] = int(60 * counter_dict['letters_counter'] / (time.time() - counter_dict['start_time']))
     counter_dict['time_for_string'] = time.time()
+
+
+def record_statistics(counter_dict):
+    with open('asserts/Texts/statictics.txt', 'a') as f:
+        f.write(str(counter_dict['litters/minute']) + ' ' +
+                str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
+                str(datetime.now())[:-7] + '\n')

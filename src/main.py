@@ -1,7 +1,6 @@
 from keyboard import *
 from Global import *
 
-
 counter_dict['start_time'] = time.time()
 counter_dict['time_for_string'] = time.time()
 
@@ -11,23 +10,17 @@ while process:
     main_font = fonts[0] + '.otf'
     display.fill((255, 255, 255))
     len_txt_string = len(txt_string)
-    if exit_button.draw(1400, 770, '   exit', true_func) is True:
+    if exit_button.draw(1400, 770, '   exit', press_register) is True:
         process = False
         if counter_dict['litters/minute']:
-            with open('asserts/Texts/statictics.txt', 'a') as f:
-                f.write(str(counter_dict['litters/minute']) + ' ' +
-                        str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
-                        str(datetime.now())[:-7] + '\n')
+            record_statistics(counter_dict)
 
     for event in pygame.event.get():  # перебираем события
 
         if event.type == pygame.QUIT:
             process = False  # Если мы нажали на кнопочку закрыть, то мы выходим из приложения
             if counter_dict['litters/minute']:
-                with open('asserts/Texts/statictics.txt', 'a') as f:
-                    f.write(str(counter_dict['litters/minute']) + ' ' +
-                            str(int(100 * counter_dict['mistakes_counter'] / (counter_dict['letters_counter'] + 1))) + ' ' +
-                            str(datetime.now())[:-7] + '\n')
+                record_statistics(counter_dict)
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_BACKSPACE:
@@ -56,7 +49,7 @@ while process:
                     counter_dict['mistakes_counter'] += 1
                     counter_dict['mistakes_in_str'] += 1
                     mist_sound()
-                    #input_txt += tmp_unicode
+                    # input_txt += tmp_unicode
                     key_dict[tmp_letter.upper()].mists = min(65, key_dict[tmp_letter.upper()].mists + 5)
                     if tmp_letter.isupper():
                         if key_dict[tmp_letter.upper()].shift == 'L':
@@ -97,7 +90,7 @@ while process:
         txt_string = txt_short_list[0]
 
     if len_input_txt < len_txt_string:
-        key_dict[txt_string[len_input_txt].upper()].draw(condition=True) #####
+        key_dict[txt_string[len_input_txt].upper()].draw(condition=True)
         if txt_string[len_input_txt] != ' ' and txt_string[len_input_txt].isupper():
             if key_dict[txt_string[len_input_txt].upper()].shift == 'L':
                 left_shift.draw(condition=True)
