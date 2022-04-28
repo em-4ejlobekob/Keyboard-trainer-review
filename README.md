@@ -11,7 +11,7 @@ git clone https://github.com/em-4ejlobekob/Keyboard-trainer-review.git -b dev
 cd Keyboard-trainer-review/src
 python3 main.py
 ```
-Вас встретит один из дефолтных текстов, которы1 уже загружен в проект.
+Вас встретит один из дефолтных текстов, который уже загружен в проект.
 
 [Главное поле](pictures/main.jpg)
 
