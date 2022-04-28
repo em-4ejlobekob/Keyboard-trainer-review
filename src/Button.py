@@ -1,6 +1,6 @@
-from Global import pygame, display, main_font
+import variables as var
 
-from variables import inactive_button_colour, active_button_colour, button_font_color, button_font_size
+from Global import pygame, display, main_font
 
 
 class Button:
@@ -14,16 +14,16 @@ class Button:
     def __init__(self, wight, height):
         self.wight = wight
         self.height = height
-        self.inactive_colour = inactive_button_colour
-        self.active_colour = active_button_colour
+        self.inactive_colour = var.inactive_button_colour
+        self.active_colour = var.active_button_colour
         self.display = display
 
     def print_button_txt(self, message, x, y, font_type=main_font,
-                         font_color=button_font_color, font_size=button_font_size):
+                         font_color=var.button_font_color, font_size=var.button_font_size):
         """Выводит слова, которые написаны на кнопке"""
         font_type = pygame.font.Font(font_type, font_size)
         txt = font_type.render(message, True, font_color)
-        self.display.blit(txt, (x, y))
+        self.display.blit(txt, (x + var.bttn_indent_x, y + var.bttn_indent_y))
 
     def draw(self, x, y, message, action=None,):
         """Метод рисует кнопку на поле
@@ -39,13 +39,12 @@ class Button:
 
         if x < mouse[0] < x + self.wight and y < mouse[1] < y + self.height:
             pygame.draw.rect(self.display, self.active_colour, (x, y, self.wight, self.height))
-            self.print_button_txt(message, x + 10, y + 10)
+            self.print_button_txt(message, x, y)
             if click[0] and action is not None:
-                pygame.time.delay(200)
+                pygame.time.delay(100)
                 return action()
             else:
                 return None
         else:
             pygame.draw.rect(self.display, self.inactive_colour, (x, y, self.wight, self.height))
-            self.print_button_txt(message, x + 10, y + 10, )
-
+            self.print_button_txt(message, x, y)

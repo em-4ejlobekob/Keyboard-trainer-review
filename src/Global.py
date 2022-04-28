@@ -10,7 +10,6 @@ display = pygame.display.set_mode((dspl_x, dspl_y))
 fonts = ['asserts/Fonts/font_1', 'asserts/Fonts/font_2', 'asserts/Fonts/font_3', 'asserts/Fonts/font_4',
          'asserts/Fonts/font_5']
 main_font = fonts[0] + '.otf'
-input_txt = ''
 
 keyboard_font = main_font
 litter_list_1 = [(['`', '~', 'Ё'], 'R'), (['1', '!'], 'R'), (['@', '"', '2'], 'R'), (['#', '№', '3'], 'R'),
