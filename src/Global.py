@@ -1,16 +1,17 @@
 import pygame
 
+from variables import dspl_x, dspl_y
 
 pygame.init()
 process = True
 
+display = pygame.display.set_mode((dspl_x, dspl_y))
+
 fonts = ['asserts/Fonts/font_1', 'asserts/Fonts/font_2', 'asserts/Fonts/font_3', 'asserts/Fonts/font_4',
          'asserts/Fonts/font_5']
 main_font = fonts[0] + '.otf'
-max_str_len = 80
-display = pygame.display.set_mode((1600, 900))
+input_txt = ''
 
-rect_colour = (64, 128, 255)
 keyboard_font = main_font
 litter_list_1 = [(['`', '~', 'Ё'], 'R'), (['1', '!'], 'R'), (['@', '"', '2'], 'R'), (['#', '№', '3'], 'R'),
                  (['$', ';', '4'], 'R'), (['5', '%'], 'R'), ([':', '^', '6'], 'R'), (['&', '?', '7'], 'L'),
@@ -28,18 +29,6 @@ litter_list_5 = [([' ', ' '], 'L')]
 litter_lists = [litter_list_1, litter_list_2, litter_list_3, litter_list_4, litter_list_5]
 lists = [list_1, list_2, list_3, list_4, list_5] = [list(), list(), list(), list(), list()]
 
-from functions import *
-from Button import Button
-
-add_button = Button(120, 50)
-change_font_button = Button(120, 50)
-statistics_button = Button(120, 50)
-exit_button = Button(100, 50)
-
-txt_list = add_txt('asserts/Texts/text1.txt')
-txt_short_list = [txt_list[i] for i in range(5)]
-txt_string = txt_short_list[0]
-input_txt = ''
 counter_dict = dict.fromkeys(['mistakes_counter',
                               'letters_in_str_speed', 'words_in_str_speed',
                               'letters_counter', 'words_counter', 'letters_counter_str', 'mistakes_in_str',
