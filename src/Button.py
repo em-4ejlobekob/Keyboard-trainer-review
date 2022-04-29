@@ -41,7 +41,7 @@ class Button:
             pygame.draw.rect(self.display, self.active_colour, (x, y, self.wight, self.height))
             self.print_button_txt(message, x, y)
             if click[0] and action is not None:
-                pygame.time.delay(100)
+                pygame.time.delay(200)
                 return action()
             else:
                 return None

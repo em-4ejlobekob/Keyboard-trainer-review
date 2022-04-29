@@ -54,7 +54,7 @@ exit_x_size, exit_y_size = 100, 50
 
 # keyboard
 key_font_size = 26
-penalty_coef = 4
+penalty_coef = 3
 key_wight, key_height = 75, 75
 inactive_key_1 = 160
 inactive_key_2 = 200
@@ -67,7 +67,7 @@ next_dist_key = 100
 left_shift_x, left_shift_y, left_shift_len = 80, 660, 2
 right_shift_x, right_shift_y, right_shift_len = 1250, 660, 2
 space_x, space_y, space_len = 300, 740, 10
-keyboard_lines = 3
+keyboard_lines = 4
 litter_2_dist = 25
 keylit_2_x = 20
 keylit_2_y = 35

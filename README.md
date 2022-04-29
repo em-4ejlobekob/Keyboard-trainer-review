@@ -1,12 +1,18 @@
 # Keyboard-trainer-review
-Клавиатурный тренажёр на python3.
+Клавиатурный тренажёр на python 3.8
+
+Если не установлен python3, то вот команда для его установки на Ubuntu:
+
+```
+sudo apt update
+sudo apt install python3.8 
+```
 
 Запуск проекта:
 
 ```
-sudo apt update 
 pip install pygame
-python -m pip install easygui
+python3 -m pip install easygui
 git clone https://github.com/em-4ejlobekob/Keyboard-trainer-review.git -b dev
 cd Keyboard-trainer-review/src
 python3 main.py

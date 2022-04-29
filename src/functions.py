@@ -82,7 +82,7 @@ def watch_stat():
         x, y = var.stat_x, var.stat_y
         print_txt('Символов в минутy', x, y)
         print_txt('% ошибок', x + var.indention_stat_x * 1, y)
-        print_txt(' ГГГГ-ММ-ДД   ЧЧ-ММ-СС', x + var.indention_stat_x * 2, y)
+        print_txt('ГГГГ-ММ-ДД ЧЧ-ММ-СС', x + var.indention_stat_x * 2, y)
 
         if exit_button.draw(var.exit_x, var.exit_y, '   exit', press_register) is True:
             start = False
@@ -91,8 +91,8 @@ def watch_stat():
                 y += var.indention_stat_y
                 info = string.split(' ')
                 print_txt(' ' * var.stat_space_dist + info[0], x, y)
-                print_txt('  ' + info[1], x + var.indention_stat_x * 1, y)
-                print_txt(info[2] + ' ' + info[3], x + var.indention_stat_x * 2, y)
+                print_txt('   ' + info[1], x + var.indention_stat_x * 1, y)
+                print_txt(info[2] + '     ' + info[3], x + var.indention_stat_x * 2, y)
 
         for event in pygame.event.get():  # перебираем события
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
