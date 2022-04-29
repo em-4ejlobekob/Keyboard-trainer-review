@@ -1,6 +1,6 @@
-from Global import pygame, display, keyboard_font, lists, litter_lists, main_font
-
 import variables as var
+
+from Global import pygame, display, keyboard_font, lists, litter_lists, main_font
 
 
 class Key:

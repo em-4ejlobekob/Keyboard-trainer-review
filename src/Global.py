@@ -2,6 +2,7 @@ import pygame
 
 from variables import dspl_x, dspl_y
 
+
 pygame.init()
 process = True
 

@@ -54,7 +54,7 @@ exit_x_size, exit_y_size = 100, 50
 
 # keyboard
 key_font_size = 26
-penalty_coef = 4
+penalty_coef = 3
 key_wight, key_height = 75, 75
 inactive_key_1 = 160
 inactive_key_2 = 200
